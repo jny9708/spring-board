@@ -36,7 +36,7 @@ public class BoardDAOTest {
 				logger.info(list.title);
 			}
 		}else {
-				logger.info("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+				logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}	
 	}
 	
@@ -46,25 +46,25 @@ public class BoardDAOTest {
 		BoardVO boardVO = boardDAO.getBoardContent(1);
 		logger.info("\n Board List \n ");
 		if(boardVO != null) {
-			logger.info("±Û¹øÈ£ : " + boardVO.getBid() );
-			logger.info("±ÛÁ¦¸ñ : " + boardVO.getTitle() );
-			logger.info("±Û³»¿ë : " + boardVO.getContent() );
-			logger.info("±ÛÅÂ±× : " + boardVO.getTag() );
-			logger.info("Á¶È¸¼ö : " + boardVO.getView_cnt() );
-			logger.info("ÀÛ¼ºÀÚ : " + boardVO.getReg_id() );
-			logger.info("ÀÛ¼ºÀÏ : " + boardVO.getReg_dt() );
-			logger.info("¼öÁ¤ÀÏ : " + boardVO.getEdit_dt() );
+			logger.info("ï¿½Û¹ï¿½È£ : " + boardVO.getBid() );
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + boardVO.getTitle() );
+			logger.info("ï¿½Û³ï¿½ï¿½ï¿½ : " + boardVO.getContent() );
+			logger.info("ï¿½ï¿½ï¿½Â±ï¿½ : " + boardVO.getTag() );
+			logger.info("ï¿½ï¿½È¸ï¿½ï¿½ : " + boardVO.getView_cnt() );
+			logger.info("ï¿½Û¼ï¿½ï¿½ï¿½ : " + boardVO.getReg_id() );
+			logger.info("ï¿½Û¼ï¿½ï¿½ï¿½ : " + boardVO.getReg_dt() );
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ : " + boardVO.getEdit_dt() );
 		} else {
-			logger.info("µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}
 	}
 
 	@Test  
 	public void testInsertBoard() throws Exception {
 		BoardVO boardVO = new BoardVO();
-		boardVO.setCate_cd("1");
-		boardVO.setTitle("Ã¹¹øÂ° °Ô½Ã¹° ÀÔ´Ï´Ù.");
-		boardVO.setContent("Ã¹¹øÂ° °Ô½Ã¹°ÀÔ´Ï´Ù.");
+		//boardVO.setCate_cd("1");
+		boardVO.setTitle("ì²«ë²ˆì¨° ê²Œì‹œë¬¼ìž…ë‹ˆë‹¤.");
+		boardVO.setContent("ì²«ë²ˆì¨° ê²Œì‹œë¬¼ìž…ë‹ˆë‹¤.");
 		boardVO.setTag("1");
 		boardVO.setReg_id("1");
 		
@@ -73,9 +73,9 @@ public class BoardDAOTest {
 		logger.info("\n Insert Board Result " +result);
 
 		if(result == 1) {
-			logger.info("\n °Ô½Ã¹° µî·Ï ¼º°ø ");
+			logger.info("\n ì„±ê³µ");
 		} else {
-			logger.info("\n °Ô½Ã¹° µî·Ï ½ÇÆÐ");
+			logger.info("\n ì‹¤íŒ¨");
 		}
 	}
 
@@ -85,9 +85,9 @@ public class BoardDAOTest {
 	public void testUpdateBoard() throws Exception {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setBid(1);
-		boardVO.setCate_cd("1");
-		boardVO.setTitle("Ã¹¹øÂ° °Ô½Ã¹° ÀÔ´Ï´Ù-¼öÁ¤ ÇÕ´Ï´Ù.");
-		boardVO.setContent("Ã¹¹øÂ° °Ô½Ã¹°ÀÔ´Ï´Ù-¼öÁ¤ÇÕ´Ï´Ù.");
+		//boardVO.setCate_cd("1");
+		boardVO.setTitle("Ã¹ï¿½ï¿½Â° ï¿½Ô½Ã¹ï¿½ ï¿½Ô´Ï´ï¿½-ï¿½ï¿½ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.");
+		boardVO.setContent("Ã¹ï¿½ï¿½Â° ï¿½Ô½Ã¹ï¿½ï¿½Ô´Ï´ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 		boardVO.setTag("1-1");
 		
 		int result = boardDAO.updateBoard(boardVO);
@@ -95,9 +95,9 @@ public class BoardDAOTest {
 		logger.info("\n Update Board Result \n ");
 
 		if(result > 0) {
-			logger.info("\n °Ô½Ã¹° ¼öÁ¤ ¼º°ø ");
+			logger.info("\n ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
 		} else {
-			logger.info("\n °Ô½Ã¹° ¼öÁ¤ ½ÇÆÐ");
+			logger.info("\n ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
@@ -110,9 +110,9 @@ public class BoardDAOTest {
 		logger.info("\n Delete Board Result \n ");
 
 		if(result > 0) {
-			logger.info("\n °Ô½Ã¹° »èÁ¦ ¼º°ø ");
+			logger.info("\n ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ");
 		} else {
-			logger.info("\n °Ô½Ã¹° »èÁ¦ ½ÇÆÐ");
+			logger.info("\n ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 
@@ -125,9 +125,9 @@ public class BoardDAOTest {
 		logger.info("\n Update View Count Result \n ");
 
 		if(result > 0) {
-			logger.info("\n °Ô½Ã¹° Á¶È¸¼ö ¾÷µ¥ÀÌÆ® ¼º°ø ");
+			logger.info("\n ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ");
 		} else {
-			logger.info("\n °Ô½Ã¹° Á¶È¸¼ö ¾÷µ¥ÀÌÆ® ½ÇÆÐ");
+			logger.info("\n ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 

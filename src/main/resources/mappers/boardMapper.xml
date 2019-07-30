@@ -6,14 +6,14 @@
 <mapper namespace="com.young.web.board.boardMapper">
 	<select id="getBoardList" resultType="com.young.web.board.model.BoardVO">
 		SELECT
-			BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
+			BID, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
 		FROM
 			TBL_BOARD
 	</select>
 
 	<select id="getBoardContent" resultType="com.young.web.board.model.BoardVO" parameterType="com.young.web.board.model.BoardVO">
 		SELECT
-			BID, CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
+			BID, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT
 		FROM
 			TBL_BOARD
 		WHERE
@@ -21,10 +21,9 @@
 	</select>
 
 	<insert id="insertBoard" parameterType="com.young.web.board.model.BoardVO">
-		INSERT INTO TBL_BOARD (CATE_CD, TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
-		VALUES (
-			#{cate_cd}
-			, #{title}
+		INSERT INTO TBL_BOARD (TITLE, CONTENT, TAG, VIEW_CNT, REG_ID, REG_DT, EDIT_DT)
+		VALUES (			
+			#{title}
 			, #{content}
 			, #{tag}
 			, 0
@@ -36,8 +35,7 @@
 
 	<update id="updateBoard" parameterType="com.young.web.board.model.BoardVO">
 		UPDATE TBL_BOARD SET
-			CATE_CD = #{cate_cd}
-			, TITLE = #{title}
+			TITLE = #{title}
 			, CONTENT = #{content}
 			, TAG = #{tag}
 			, EDIT_DT = now()
