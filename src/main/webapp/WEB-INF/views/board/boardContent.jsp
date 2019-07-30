@@ -13,6 +13,18 @@
 	$(document).on('click', '#btnList', function(){
 		location.href = "${pageContext.request.contextPath}/board/getBoardList";
 	});
+	$(document).on('click', '#btnUpdate', function(){
+		var url = "${pageContext.request.contextPath}/board/editForm";
+		url = url + "?bid="+${boardContent.bid};
+		url = url + "&mode=edit";
+		location.href = url;
+	});
+
+	$(document).on('click', '#btnDelete', function(){
+		var url = "${pageCotext.request.contextPath}/board/deleteBoard";
+		url = url + "?bid=" + ${boardContent.bid};
+		location.href=url;
+	}); 
 </script>
 </head>
 <body>
