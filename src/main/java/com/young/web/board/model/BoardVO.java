@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class BoardVO {
 	public int bid;
-	public String cate_cd;
+	//public String cate_cd;
 	public String title;
 	public String content;
 	public String tag;

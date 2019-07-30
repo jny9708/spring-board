@@ -1,32 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<meta charset="UTF-8">
 <title>board</title>	
-	<style>
-		body{
-			padding-top: 70px;
-			padding-bottom: 30px;
-		}
-	</style>
 	<script>
 	$(document).on('click', '#btnWriteForm', function(e){
 		e.preventDefault();
 		location.href = "${pageContext.request.contextPath}/board/boardForm";
 	});
-
+	
+	function fn_contentView(bid){
+		var url = "${pageContext.request.contextPath}/board/getBoardContent";
+		url = url + "?bid="+bid;
+		location.href = url;
+	}
 	</script>
 </head>
 <body>
-	
+		
 		<h2 style="text-align: center;">board list</h2>
 		<article>
 			<div class="container">
@@ -43,24 +38,28 @@
 						<thead>
 							<tr>
 								<th>NO</th>
-								<th>±ÛÁ¦¸ñ</th>
-								<th>ÀÛ¼ºÀÚ</th>
-								<th>Á¶È¸¼ö</th>
-								<th>ÀÛ¼ºÀÏ</th>
+								<th>ê¸€ì œëª©</th>
+								<th>ì‘ì„±ì</th>
+								<th>ì¡°íšŒìˆ˜</th>
+								<th>ì‘ì„±ì¼</th>
 							</tr>
 						</thead>
 						<tbody>
 						
 							<c:choose>
 								<c:when test="${empty boardList }" >
-									<tr><td colspan="5" align="center">µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.</td></tr>
+									<tr><td colspan="5" align="center">ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.</td></tr>
 								</c:when> 
 				
 								<c:when test="${!empty boardList}">
 									<c:forEach var="list" items="${boardList}">
 										<tr>
 											<td><c:out value="${list.bid}"/></td>
-											<td><c:out value="${list.title}"/></td>
+											<td>
+												<a href="#" onClick="fn_contentView(<c:out value="${list.bid}"/>)">
+													<c:out value="${list.title}"/>
+												</a>
+											</td>
 											<td><c:out value="${list.reg_id}"/></td>
 											<td><c:out value="${list.view_cnt}"/></td>
 											<td><c:out value="${list.reg_dt}"/></td>
@@ -72,7 +71,7 @@
 					</table>
 				</div>
 				<div>
-					<botton type="botton" class="btn btn-sm btn-primary" id="btnWriteForm">±Û¾²±â
+					<botton type="botton" class="btn btn-sm btn-primary" id="btnWriteForm">ê¸€ì“°ê¸°
 				</div>
 			</div>
 		</article>
