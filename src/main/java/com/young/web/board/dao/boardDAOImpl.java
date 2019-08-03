@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.young.web.board.model.BoardVO;
+import com.young.web.common.Pagination;
 
 @Repository	
 public class boardDAOImpl implements boardDAO{
@@ -16,10 +17,10 @@ public class boardDAOImpl implements boardDAO{
 	private SqlSession sqlSession;
 	
 	
-	//¸Å°³º¯¼ö °ªÀº Mapper.xmlÀÇ ³×ÀÓ½ºÆäÀÌ½º ÀÌ¸§+ Mapper.xml¿¡ ÀÖ´Â idÀÌ¸§
+	//ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Mapper.xmlï¿½ï¿½ ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ì¸ï¿½+ Mapper.xmlï¿½ï¿½ ï¿½Ö´ï¿½ idï¿½Ì¸ï¿½
 	@Override
-	public List<BoardVO> getBoardList() throws Exception {
-		return sqlSession.selectList("com.young.web.board.boardMapper.getBoardList");
+	public List<BoardVO> getBoardList(Pagination pagiantion) throws Exception {
+		return sqlSession.selectList("com.young.web.board.boardMapper.getBoardList", pagiantion);
 	}
 
 	@Override
@@ -45,6 +46,11 @@ public class boardDAOImpl implements boardDAO{
 	@Override
 	public int updateViewCnt(int bid) throws Exception {
 		return sqlSession.update("com.young.web.board.boardMapper.updateViewCnt", bid);
+	}
+
+	@Override
+	public int getBoardListCnt() throws Exception {	
+		return sqlSession.selectOne("com.young.web.board.boardMapper.getBoardListCnt");
 	}
 
 		
