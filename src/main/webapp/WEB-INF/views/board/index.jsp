@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>board</title>	
+<c:url var="getBoardListURL" value="/board/getBoardList"></c:url>
 	<script>
-	
 	//이전 버튼 이벤트
 	function fn_prev(page, range, rangeSize) {
 			var page = ((range - 2) * rangeSize) + 1;
 			var range = range - 1;
-			var url = "${pageContext.request.contextPath}/board/getBoardList";
+			var url = "${getBoardListURL}";
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
 
@@ -22,11 +22,16 @@
 		}
 
 	  //페이지 번호 클릭
-
 		function fn_pagination(page, range, rangeSize, searchType, keyword) {
-			var url = "${pageContext.request.contextPath}/board/getBoardList";
+			var url = "${getBoardListURL}";
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
+ 			<c:if test="${pagination.keyword} ne ''">
+				url = url + "&searchType=" + searchType;
+				url = url + "&keyword=" + keyword;
+			</c:if>
+			url = url + "&searchType=" + searchType;
+			url = url + "&keyword=" + keyword;
 			location.href = url;	
 		}
 		
@@ -34,7 +39,7 @@
 		function fn_next(page, range, rangeSize) {
 			var page = parseInt((range * rangeSize)) + 1;
 			var range = parseInt(range) + 1;
-			var url = "${pageContext.request.contextPath}/board/getBoardList";
+			var url = "${getBoardListURL}";
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
 			location.href = url;
@@ -50,11 +55,45 @@
 		url = url + "?bid="+bid;
 		location.href = url;
 	}
+
+	$(document).on('click', '#btnSearch', function(e){
+		e.preventDefault();
+		var url = "${getBoardListURL}";
+		url = url + "?searchType=" + $('#searchType').val();
+		url = url + "&keyword=" + $('#keyword').val();
+		location.href = url;
+		console.log(url);
+	});	
+	
+	$(document).ready( function() {
+   			 /* <c:if test="${!empty pagination.keyword} || ${'' ne pagination.keyword}"> 
+			 $('#keyword').val('${pagination.keyword}');
+			 console.log("ed");
+		 	 </c:if>	    */
+			 $('#keyword').val('${pagination.keyword}');
+	      } );
+    
+
 	</script>
+	<style>
+	h2>a:link {
+		color:black; text-decoration:none;
+	}
+	
+	h2>a:visited {
+		color:black; text-decoration:none;
+	}
+	h2>a:hover {
+		color:black; text-decoration:none;
+	}
+	h2>a:active {
+		color:black; text-decoration:none;
+	}
+	</style>
 </head>
 <body>
 		
-		<h2 style="text-align: center;">board list</h2>
+		<h2 style="text-align: center;"><a href="${getBoardListURL}">board list</a></h2>
 		<article>
 			<div class="container">
 				<div class="table-responsive">
@@ -105,7 +144,7 @@
 				<div>
 					<botton type="botton" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기
 				</div>
-				
+				<br>
 				<!-- pagination{s} -->
 				<div id="paginationBox">
 					<ul class="pagination">
@@ -119,7 +158,7 @@
 						<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
 							<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
 							<a class="page-link" href="#" onClick="fn_pagination('${idx}', 
-								'${pagination.range}', '${pagination.rangeSize}')"> ${idx} </a>
+								'${pagination.range}', '${pagination.rangeSize}','${pagination.searchType}','${pagination.keyword}')"> ${idx} </a>
 							</li>
 						</c:forEach>
 					
@@ -134,8 +173,26 @@
 					</ul>
 				</div>
 				<!-- pagination{e} -->
-
 				
+				<!-- search{s} -->
+				<div class="form-group row justify-content-center">
+					<div class="w100" style="padding-right:10px">
+						<select class="form-control form-control-sm" name="searchType" id="searchType">
+							<option value="title">제목</option>
+							<option value="Content">본문</option>
+							<option value="reg_id">작성자</option>
+						</select>
+					</div>
+		
+					<div class="w300" style="padding-right:10px">
+						<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
+					</div>
+					
+					<div>
+						<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
+					</div>
+				</div>
+				<!-- search{e} -->	
 			</div>
 		</article>
 

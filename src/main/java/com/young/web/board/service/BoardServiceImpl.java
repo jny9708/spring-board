@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.young.web.board.dao.boardDAO;
 import com.young.web.board.model.BoardVO;
-import com.young.web.common.Pagination;
+import com.young.web.common.Search;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -18,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	private boardDAO boardDAO;
 
 	@Override
-	public List<BoardVO> getBoardList(Pagination pagination) throws Exception {
-		return boardDAO.getBoardList(pagination);
+	public List<BoardVO> getBoardList(Search search) throws Exception {
+		return boardDAO.getBoardList(search);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getBoardListCnt() throws Exception {
+	public int getBoardListCnt(Search search) throws Exception {
 		return boardDAO.getBoardListCnt();
 	}
 	
