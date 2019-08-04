@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.young.web.board.model.BoardVO;
+import com.young.web.board.model.ReplyVO;
 import com.young.web.board.service.BoardService;
 import com.young.web.common.Pagination;
 import com.young.web.common.Search;
@@ -67,6 +68,7 @@ public class BoardController {
 	public String getBoardContent(Model model, @RequestParam("bid") int bid) throws Exception {
 		
 		model.addAttribute("boardContent",boardService.getBoardContent(bid));
+		model.addAttribute("replyVO", new ReplyVO());
 		return "board/boardContent";
 		
 	}

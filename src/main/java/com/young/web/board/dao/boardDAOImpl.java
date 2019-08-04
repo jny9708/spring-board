@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.young.web.board.model.BoardVO;
+import com.young.web.board.model.ReplyVO;
 import com.young.web.common.Pagination;
 
 @Repository	
@@ -51,6 +52,26 @@ public class boardDAOImpl implements boardDAO{
 	@Override
 	public int getBoardListCnt() throws Exception {	
 		return sqlSession.selectOne("com.young.web.board.boardMapper.getBoardListCnt");
+	}
+
+	@Override
+	public List<ReplyVO> getReplyList(int bid) throws Exception {
+		return sqlSession.selectList("com.young.web.board.replyMapper.getReplyList", bid);
+	}
+
+	@Override
+	public int saveReplyList(ReplyVO replyVO) throws Exception {
+		return sqlSession.insert("com.young.web.board.replyMapper.saveReply", replyVO);
+	}
+
+	@Override
+	public int updateReply(ReplyVO replyVO) throws Exception {
+		return sqlSession.update("com.young.web.board.replyMapper.updateReply", replyVO);
+	}
+
+	@Override
+	public int deleteReply(int rid) throws Exception {
+		return sqlSession.delete("com.young.web.board.replyMapper.deleteReply", rid);
 	}
 
 		

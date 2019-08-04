@@ -26,12 +26,11 @@
 			var url = "${getBoardListURL}";
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
- 			<c:if test="${pagination.keyword} ne ''">
+ 			<c:if test="${!empty pagination.keyword}">
 				url = url + "&searchType=" + searchType;
 				url = url + "&keyword=" + keyword;
 			</c:if>
-			url = url + "&searchType=" + searchType;
-			url = url + "&keyword=" + keyword;
+			
 			location.href = url;	
 		}
 		
