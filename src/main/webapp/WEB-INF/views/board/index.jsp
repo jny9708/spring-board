@@ -141,7 +141,7 @@
 					</table>
 				</div>
 				<div>
-					<botton type="botton" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기
+					<button type="button" class="btn btn-sm btn-primary" id="btnWriteForm">글쓰기</button>
 				</div>
 				<br>
 				<!-- pagination{s} -->

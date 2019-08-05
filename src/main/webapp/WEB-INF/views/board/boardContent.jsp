@@ -8,6 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>board</title>
+<c:url var="getBoardListURL" value="/board/getBoardList"></c:url>
+<c:url var="deleteBoardURL" value="/board/deleteBoard"></c:url>
+<c:url var="saveReplyURL" value="/restBoard/saveReply"></c:url>
+<c:url var="editFormURL" value="/board/editForm"></c:url>
+<c:url var="getReplyListURL" value="/restBoard/getReplyList"></c:url>
+<c:url var="deleteReplyURL" value="/restBoard/deleteReply"></c:url>
+
+<c:url var="updateReplyURL" value="/restBoard/saveReply">
+	<c:param name="mode" value="edit" />
+</c:url>
+
+
 
 <script>
 	$(document).ready(function(){
@@ -15,17 +27,17 @@
 	});
 	
 	$(document).on('click', '#btnList', function(){
-		location.href = "${pageContext.request.contextPath}/board/getBoardList";
+		location.href = "${getBoardListURL}";
 	});
 	$(document).on('click', '#btnUpdate', function(){
-		var url = "${pageContext.request.contextPath}/board/editForm";
+		var url = "${editFormURL}";
 		url = url + "?bid="+${boardContent.bid};
 		url = url + "&mode=edit";
 		location.href = url;
 	});
 
 	$(document).on('click', '#btnDelete', function(){
-		var url = "${pageCotext.request.contextPath}/board/deleteBoard";
+		var url = "${deleteBoardURL}";
 		url = url + "?bid=" + ${boardContent.bid};
 		location.href=url;
 	}); 
@@ -42,7 +54,7 @@
 						,"X-HTTP-Method-Override" : "POST"
 					  };
 		  $.ajax({
-			  url: "${pageContext.request.contextPath}/restBoard/saveReply"
+			  url: "${saveReplyURL}"
 				  , headers: headers
 				  , data : paramData
 				  , type : 'POST'
@@ -64,7 +76,7 @@
 		})
 
 	function showReplyList(){
-		var url = "${pageContext.request.contextPath}/restBoard/getReplyList";
+		var url = "${getReplyListURL}";
 		var paramData = {"bid":"${boardContent.bid}"};
 
 		$.ajax({
@@ -162,7 +174,7 @@
 		var paramData = {"rid": rid};
 		
 		$.ajax({
-			url: "${pageContext.request.contextPath}/restBoard/deleteReply"
+			url: "${deleteReplyURL}"
 			, data : paramData
 			, type : 'POST'
 			, dataType : 'text'

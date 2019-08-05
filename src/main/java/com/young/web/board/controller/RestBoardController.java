@@ -31,11 +31,17 @@ public class RestBoardController {
 	}
 	
 	@RequestMapping(value="/saveReply",method=RequestMethod.POST)
-	public Map<String,Object> saveReply(@RequestBody ReplyVO replyVO) throws Exception {
+	public Map<String,Object> saveReply(@RequestBody ReplyVO replyVO
+			,@RequestParam(required = false, defaultValue = "") String mode) throws Exception {
 		Map<String,Object> result = new HashMap<>();
 		
 		try {
-			boardService.saveReply(replyVO);
+			if(mode.equals("edit")) {
+				boardService.updateReply(replyVO);
+			}else {
+				boardService.saveReply(replyVO);
+			}
+			
 			result.put("status", "OK");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,6 +60,14 @@ public class RestBoardController {
 			e.printStackTrace();
 			result.put("status", "False");
 		}
+		return result;
+	}
+	
+	@RequestMapping(value="/updateReply",method=RequestMethod.POST)
+	public Map<String,Object> updateReply(@RequestBody ReplyVO replyVO) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		
+		
 		return result;
 	}
 	
